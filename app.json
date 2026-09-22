@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "Strength Tracker",
+    "slug": "strength-tracker",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "android": {
+      "package": "com.iqux29.strengthtracker",
+      "versionCode": 1
+    }
+  }
+}
