@@ -1,0 +1,32 @@
+name: Publish OTA Update
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - 'App.js'
+      - 'assets/**'
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Expo token
+        run: |
+          if [ -z "${{ secrets.EXPO_TOKEN }}" ]; then
+            echo "EXPO_TOKEN repository secret is missing"
+            exit 1
+          fi
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Setup EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+      - name: Install dependencies
+        run: npm install
+      - name: Publish Android OTA update
+        run: eas update --channel production --platform android --message "Workout usability fixes" --non-interactive
