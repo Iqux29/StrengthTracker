@@ -18,8 +18,13 @@ jobs:
           distribution: temurin
           java-version: '17'
       - run: chmod +x android/gradlew
+      - name: Give Gradle more memory
+        run: |
+          mkdir -p ~/.gradle
+          echo "org.gradle.jvmargs=-Xmx4g -XX:MaxMetaspaceSize=1g -Dfile.encoding=UTF-8" >> ~/.gradle/gradle.properties
+          echo "kotlin.daemon.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=768m" >> ~/.gradle/gradle.properties
       - name: Build standalone release APK
-        run: cd android && ./gradlew assembleRelease
+        run: cd android && ./gradlew assembleRelease --no-daemon
       - uses: actions/upload-artifact@v4
         with:
           name: StrengthTracker-v1.0-APK
