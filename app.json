@@ -1,13 +1,24 @@
 {
   "expo": {
     "name": "Strength Tracker",
-    "slug": "strength-tracker",
+    "slug": "strengthtracker",
+    "owner": "iqux93s-team",
     "version": "1.0.0",
     "orientation": "portrait",
     "userInterfaceStyle": "dark",
+    "runtimeVersion": { "policy": "appVersion" },
+    "updates": {
+      "url": "https://u.expo.dev/58927ed2-5c2b-4b0f-86ea-1fa097b0811e",
+      "requestHeaders": { "expo-channel-name": "production" },
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
+    },
+    "extra": {
+      "eas": { "projectId": "58927ed2-5c2b-4b0f-86ea-1fa097b0811e" }
+    },
     "android": {
       "package": "com.iqux29.strengthtracker",
-      "versionCode": 1
+      "versionCode": 2
     }
   }
 }
