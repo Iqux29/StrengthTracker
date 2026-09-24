@@ -1,8 +1,8 @@
 name: Build Android APK
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
+  release:
+    types: [published]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,7 +25,16 @@ jobs:
           echo "kotlin.daemon.jvmargs=-Xmx2g -XX:MaxMetaspaceSize=768m" >> ~/.gradle/gradle.properties
       - name: Build standalone release APK
         run: cd android && ./gradlew assembleRelease --no-daemon
+      - name: Name APK
+        run: cp android/app/build/outputs/apk/release/app-release.apk StrengthTracker-v1.0.apk
       - uses: actions/upload-artifact@v4
         with:
           name: StrengthTracker-v1.0-APK
-          path: android/app/build/outputs/apk/release/app-release.apk
+          path: StrengthTracker-v1.0.apk
+      - name: Attach APK to GitHub Release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: StrengthTracker-v1.0.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
