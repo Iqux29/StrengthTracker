@@ -1,5 +1,5 @@
 import React,{useEffect,useState}from'react';import{SafeAreaView,ScrollView,Text,View,Pressable,TextInput,StyleSheet,Platform,StatusBar as RNStatusBar,Alert,KeyboardAvoidingView,Share,AppState,Keyboard}from'react-native';import AsyncStorage from'@react-native-async-storage/async-storage';import{StatusBar}from'expo-status-bar';
-// OTA release: workout usability fixes 2026-09-24
+// OTA release: workout usability fixes 2026-09-24 retry
 const C={bg:'#111315',card:'#202328',gold:'#D4AF37',white:'#F5F5F5',muted:'#9DA1A6',green:'#35B86B',red:'#C95454'};
 const defaultPlan=[
 {name:'Upper A',ex:[['Barbell Bench Press',4,'6–10',150],['Barbell Bent-Over Row',4,'6–10',120],['Standing Shoulder Press',3,'8–12',120],['One-Arm Dumbbell Row',3,'10–15',90],['Dumbbell Lateral Raise',3,'12–20',60],['Curl',3,'8–15',75],['Lying Dumbbell Triceps Extension',3,'10–15',75]]},
