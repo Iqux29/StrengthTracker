@@ -1,6 +1,13 @@
 name: Build Android APK
+permissions:
+  contents: write
 on:
   workflow_dispatch:
+    inputs:
+      attach_to_release:
+        description: 'Attach APK to V1.0 release'
+        required: false
+        default: 'true'
   release:
     types: [published]
 jobs:
@@ -26,15 +33,16 @@ jobs:
       - name: Build standalone release APK
         run: cd android && ./gradlew assembleRelease --no-daemon
       - name: Name APK
-        run: cp android/app/build/outputs/apk/release/app-release.apk StrengthTracker-v1.0.apk
+        run: cp android/app/build/outputs/apk/release/app-release.apk Steelwork-v1.0.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: StrengthTracker-v1.0-APK
-          path: StrengthTracker-v1.0.apk
+          name: Steelwork-v1.0-APK
+          path: Steelwork-v1.0.apk
       - name: Attach APK to GitHub Release
-        if: github.event_name == 'release'
+        if: github.event_name == 'release' || github.event.inputs.attach_to_release == 'true'
         uses: softprops/action-gh-release@v2
         with:
-          files: StrengthTracker-v1.0.apk
+          files: Steelwork-v1.0.apk
+          tag_name: V1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
