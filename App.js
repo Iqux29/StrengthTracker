@@ -1,4 +1,4 @@
-import React,{useEffect,useState}from'react';import{SafeAreaView,ScrollView,Text,View,Pressable,TextInput,StyleSheet,Platform,StatusBar as RNStatusBar,Alert,KeyboardAvoidingView,Share,AppState}from'react-native';import AsyncStorage from'@react-native-async-storage/async-storage';import{StatusBar}from'expo-status-bar';
+import React,{useEffect,useState}from'react';import{SafeAreaView,ScrollView,Text,View,Pressable,TextInput,StyleSheet,Platform,StatusBar as RNStatusBar,Alert,KeyboardAvoidingView,Keyboard,Share,AppState}from'react-native';import AsyncStorage from'@react-native-async-storage/async-storage';import{StatusBar}from'expo-status-bar';
 // OTA release: workout usability fixes 2026-09-24 node22
 const DATA_VERSION=2;
 const STORAGE={data:'strength-tracker-v1',history:'strength-tracker-history',extra:'strength-tracker-extra',notes:'strength-tracker-notes',schema:'strength-tracker-data-version',session:'strength-tracker-active-session'};
